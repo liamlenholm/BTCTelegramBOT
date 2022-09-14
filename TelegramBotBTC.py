@@ -55,14 +55,18 @@ You can control me by sending these commands:
 
 /currencylist - To see all avaible currencies.
 
-/convertbtc AMOUNT CURRENCY - Convert BTC AMOUNT to CURRENCY. For exampel /convert 0.5 USD
+/convert2btc AMOUNT CURRENCY - Convert BTC AMOUNT to CURRENCY. For exampel /convert2btc 0.5 USD
+
+/btc2usd AMOUNT - Converts BTCAMOUNT to USD.
 
 """
     return infoText
 
 def defaultPrice():
-    print(PRICE_DATA["USD"]["last"])
+    return(PRICE_DATA["USD"]["last"])
 
+
+defaultPrice()
 
 def getCurrentPrice(isAvailableinJson):
     # If currency is in avaible list then return current price
@@ -150,9 +154,16 @@ async def convertBTC(message):
 async def convertFIAT(message):
     #Splitting the string to make a list so we can use [1] for the amount and [2] for the currency
     splitted = message.text.split()
-    splitted_Amount = splitted[1]
-    splitted_Currency = splitted[2]
-    await bot.reply_to(message, convert(splitted_Amount, splitted_Currency))
+    splitted_BTCAmount = splitted[1]
+    
+
+    #Get current price for 1 BTC in USD and mulitply that by user input
+    def btc2usd():
+        btcPrice = PRICE_DATA["USD"]["last"]
+        return(float(splitted_BTCAmount) * float(btcPrice))
+
+
+    await bot.reply_to(message, "$ " + str(btc2usd()))
 
     
 
