@@ -1,0 +1,8 @@
+Telegram BTC Fee bot. 
+
+You can control me by sending these commands:
+
+/btc - Shows the current fees for fast transaction.
+/price *** - Shows the current price per Bitcoin. Replace *** with desiered currency you can use:
+/currencylist - To see all avaible currencies.
+
